@@ -1,5 +1,5 @@
 {
-  "name": "koacrud",
+  "name": "crud",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^9.0.2",
     "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
-    "mongodb": "^3.6.7",
     "mongoose": "^5.12.10",
-    "nodemon": "^2.0.7"
+    "pug": "^3.0.2"
   }
 }
