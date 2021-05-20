@@ -6,6 +6,9 @@ var koaBody = require('koa-body');
 
 
 
+
+
+
 mongoose.connect(
     "mongodb://localhost:27017/koaCrud",
     {
@@ -42,7 +45,7 @@ var User = mongoose.model("User",schema);
 router.get('/user',async ( ctx,next)=>{
     var response  = await getUser();
     ctx.body = response
-    console.log (response)
+    // console.log (response)
     // ctx.body = "hello"
 });
 
@@ -90,5 +93,7 @@ app.use(koaBody({ multipart: true }))
 app
 .use(router.routes())
 .use(router.allowedMethods());
-app.listen(3000);
+
+
+app.listen(3005);
 

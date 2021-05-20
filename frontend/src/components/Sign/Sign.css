@@ -1,0 +1,30 @@
+.body{
+    background: #eceffc;
+    height:100vh;
+    width:100vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.formContainer{
+    display: flex;
+    justify-content:center;
+}
+.btnContainer{
+    display: flex;
+    justify-content:center;
+    width:100%;
+    align-items:center;
+}
+.input{
+    margin-bottom: 10px;
+    outline: none;
+    background:transparent;
+    border-top:0px;
+    border-right:0px;
+    border-left:0px;
+}
+.subBtn{
+    background:#eceffc;
+}
+
