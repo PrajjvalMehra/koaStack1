@@ -33,21 +33,33 @@ var User = mongoose.model("User",schema);
 //     ctx.body = 'Hello World';
 //   });
 
-  async function  getUser(){
+  async function  getUsers(){
         var user = await User.find()
         
         return user
     }
 
-
+    // var findUser = User.find()
 
 
 router.get('/user',async ( ctx,next)=>{
-    var response  = await getUser();
-    ctx.body = response
-    // console.log (response)
-    // ctx.body = "hello"
+
+    var body = ctx.request.query;
+    var response  = await User.find(body)
+    ctx.body = response;
 });
+
+
+
+// router.get('/login', async (ctx,next)=>{
+
+//   // var body = await ctx.request.body;
+//   var body =  await ctx.request.body;
+  
+//  ctx.body = {body}
+
+  
+// })
 
  router.post('/user',async (ctx,next)=>{
         
@@ -59,27 +71,27 @@ router.get('/user',async ( ctx,next)=>{
         user.phone = body.phone;
         user.save();
 
-        ctx.body = {user:user}
+        ctx.body = {body}
     
    
     
 });
 
-router.put('/user/:id', async(ctx,next)=>{
+router.put('/user', async(ctx,next)=>{
     
-        var _id = ctx.request.params.id;
+        var body = ctx.request.query;
         
-        var updateUser = await User.findByIdAndUpdate(_id, ctx.request.body)
+        var updateUser = await User.findOneAndUpdate(body, ctx.request.body)
         ctx.body={updateUser}
     
     
     
 })
 
-router.delete('/user/:id', async(ctx,next)=>{
-    var _id = ctx.request.params.id;
+router.delete('/user', async(ctx,next)=>{
+    var body = ctx.request.query;
 
-    var deleteUser = await User.findByIdAndRemove(_id)
+    var deleteUser = await User.findOneAndRemove(body)
     ctx.body = {deleteUser}
 })
     
