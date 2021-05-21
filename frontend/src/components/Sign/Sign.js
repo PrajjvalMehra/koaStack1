@@ -29,9 +29,14 @@ function Sign(){
         await axios.get(url)
         .then(function(response) {
 
-            
-            setFlag(false);
-            return response;
+            // console.log(response.data[0].name )
+            if(response.data[0].name !== ""){
+                setFlag(false);
+            }
+            else{
+                setFlag(true)
+            }
+        
            
         }).catch(function (error) {
             
@@ -61,7 +66,8 @@ function Sign(){
         }
         const handleLogout = async (e) => {
 
-            setFlag(true);;
+            setFlag(true);
+            window.location.reload(false);
         }
 
         const handleDelete = async (e) => {

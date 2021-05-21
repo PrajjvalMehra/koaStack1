@@ -29,18 +29,6 @@ var schema = mongoose.Schema({
 var User = mongoose.model("User",schema);
 
 
-// app.use(async ctx => {
-//     ctx.body = 'Hello World';
-//   });
-
-  async function  getUsers(){
-        var user = await User.find()
-        
-        return user
-    }
-
-    // var findUser = User.find()
-
 
 router.get('/user',async ( ctx,next)=>{
 
@@ -48,18 +36,6 @@ router.get('/user',async ( ctx,next)=>{
     var response  = await User.find(body)
     ctx.body = response;
 });
-
-
-
-// router.get('/login', async (ctx,next)=>{
-
-//   // var body = await ctx.request.body;
-//   var body =  await ctx.request.body;
-  
-//  ctx.body = {body}
-
-  
-// })
 
  router.post('/user',async (ctx,next)=>{
         
