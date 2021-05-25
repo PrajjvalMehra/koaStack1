@@ -3,7 +3,11 @@ var router = require('koa-router')();
 var app = new koa();
 var mongoose = require('mongoose');
 var koaBody = require('koa-body');
+var jRouter = require('koa-joi-router') ;
 
+const Joi = jRouter.Joi;
+
+const public = jRouter();
 
 
 
@@ -37,21 +41,46 @@ router.get('/user',async ( ctx,next)=>{
     ctx.body = response;
 });
 
- router.post('/user',async (ctx,next)=>{
-        
-        var body =  await ctx.request.body;
+public.route({
+  method:'post',
+  path:'/user',
+  validate:{
+    body:{
+      name : Joi.string().required(),
+      age:Joi.number(),
+      phone:Joi.string()
+    },
+    type:'json',
+    failure: 400,
+    
+  },
+  handler:  async(ctx)=>{
         var user = new User();
 
+        var body =  await ctx.request.body;
         user.name = body.name;
         user.age = body.age;
         user.phone = body.phone;
         user.save();
+        ctx.status = 201;
+  }
+})
 
-        ctx.body = {body}
+//  router.post('/user',async (ctx,next)=>{
+        
+//         var body =  await ctx.request.body;
+//         var user = new User();
+
+//         user.name = body.name;
+//         user.age = body.age;
+//         user.phone = body.phone;
+//         user.save();
+
+//         ctx.body = {body}
     
    
     
-});
+// });
 
 router.put('/user', async(ctx,next)=>{
     
@@ -85,3 +114,4 @@ app
 
 app.listen(3005);
 
+app.use(public.middleware());
